@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Alumnos - Formulario Premium</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="burbuja-fondo"></div>
+    <div class="burbuja-fondo burbuja-2"></div>
+
+    <main class="contenedor">
+        <header>
+            <h1>Registro Académico</h1>
+            <p>Complete el formulario para dar de alta a un nuevo alumno.</p>
+        </header>
+
+        <form id="formularioRegistro" novalidate>
+            <!-- 1. Datos del Alumno -->
+            <section class="seccion-formulario">
+                <div class="cabecera-seccion">
+                    <span class="numero-paso">1</span>
+                    <h2>Datos del Alumno</h2>
+                </div>
+                <div class="fila-rejilla">
+                    <div class="grupo-formulario">
+                        <label for="alumnoNombre">Nombre *</label>
+                        <input type="text" id="alumnoNombre" name="alumnoNombre" required
+                            placeholder="Nombre del alumno">
+                        <span class="mensaje-error">Este campo es obligatorio.</span>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="alumnoApellidos">Apellidos *</label>
+                        <input type="text" id="alumnoApellidos" name="alumnoApellidos" required
+                            placeholder="Apellidos del alumno">
+                        <span class="mensaje-error">Este campo es obligatorio.</span>
+                    </div>
+                </div>
+                <div class="fila-rejilla">
+                    <div class="grupo-formulario">
+                        <label for="alumnoNIF">NIF *</label>
+                        <input type="text" id="alumnoNIF" name="alumnoNIF" required placeholder="12345678X">
+                        <span class="mensaje-error">Introduzca un NIF válido.</span>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="alumnoLengua">Lengua materna *</label>
+                        <select id="alumnoLengua" name="alumnoLengua" required>
+                            <option value="">Seleccione...</option>
+                        </select>
+                        <span class="mensaje-error">Seleccione una opción.</span>
+                    </div>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="alumnoIdiomas">Idiomas conocidos * (Multiselección)</label>
+                    <select id="alumnoIdiomas" name="alumnoIdiomas" multiple required class="multi-seleccion">
+                        <!-- Cargado desde JSON -->
+                    </select>
+                    <span class="texto-ayuda">Mantén presionado Ctrl (Windows) o Command (Mac) para seleccionar
+                        varios.</span>
+                    <span class="mensaje-error">Seleccione al menos un idioma.</span>
+                </div>
+            </section>
+
+            <!-- 2. Familiares Asociados -->
+            <section class="seccion-formulario" id="seccionFamiliares">
+                <div class="cabecera-seccion">
+                    <span class="numero-paso">2</span>
+                    <h2>Familiares Asociados</h2>
+                </div>
+                <div id="contenedorFamiliares">
+                    <!-- Los familiares se añadirán aquí -->
+                </div>
+                <button type="button" id="btnAgregarFamiliar" class="btn-secundario">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Añadir Familiar
+                </button>
+                <div id="errorFamiliar" class="mensaje-error error-global">Se requiere al menos un familiar.</div>
+            </section>
+
+            <!-- 3. Dirección Actual -->
+            <section class="seccion-formulario">
+                <div class="cabecera-seccion">
+                    <span class="numero-paso">3</span>
+                    <h2>Dirección Actual</h2>
+                </div>
+                <div class="fila-rejilla-3">
+                    <div class="grupo-formulario">
+                        <label for="direccionPais">País *</label>
+                        <input type="text" id="direccionPais" name="direccionPais" required placeholder="Ej: España">
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="direccionCiudad">Ciudad *</label>
+                        <input type="text" id="direccionCiudad" name="direccionCiudad" required
+                            placeholder="Ej: Madrid">
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="direccionPoblacion">Población *</label>
+                        <input type="text" id="direccionPoblacion" name="direccionPoblacion" required
+                            placeholder="Ej: Alcobendas">
+                    </div>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="direccionCompleta">Dirección completa *</label>
+                    <input type="text" id="direccionCompleta" name="direccionCompleta" required
+                        placeholder="Calle, número, piso...">
+                </div>
+                <div class="grupo-formulario entrada-pequena">
+                    <label for="direccionCP">Código Postal *</label>
+                    <input type="text" id="direccionCP" name="direccionCP" required placeholder="00000" maxlength="5">
+                    <span class="mensaje-error">CP inválido (5 dígitos).</span>
+                </div>
+            </section>
+
+            <!-- 4. Datos Académicos -->
+            <section class="seccion-formulario">
+                <div class="cabecera-seccion">
+                    <span class="numero-paso">4</span>
+                    <h2>Datos Académicos</h2>
+                </div>
+                <div class="fila-rejilla">
+                    <div class="grupo-formulario">
+                        <label for="academiaColegio">Colegio de procedencia *</label>
+                        <input type="text" id="academiaColegio" name="academiaColegio" required>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label for="academiaNivel">Nivel de estudios alcanzado *</label>
+                        <select id="academiaNivel" name="academiaNivel" required>
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fila-rejilla">
+                    <div class="grupo-formulario">
+                        <label for="academiaIdiomas">Idiomas estudiados *</label>
+                        <select id="academiaIdiomas" name="academiaIdiomas" multiple required class="multi-seleccion">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="academiaSolicitado">Nivel de estudio solicitado *</label>
+                        <select id="academiaSolicitado" name="academiaSolicitado" required>
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Información Médica -->
+            <section class="seccion-formulario">
+                <div class="cabecera-seccion">
+                    <span class="numero-paso">5</span>
+                    <h2>Información Médica</h2>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="medicaAlergias">Alergias (Opcional)</label>
+                    <select id="medicaAlergias" name="medicaAlergias" multiple class="multi-seleccion">
+                    </select>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="medicaMedicacion">Medicación actual (Opcional)</label>
+                    <textarea id="medicaMedicacion" name="medicaMedicacion" rows="3"
+                        placeholder="Si aplica, indique la medicación..."></textarea>
+                </div>
+            </section>
+
+            <button type="submit" class="btn-principal">Finalizar Registro</button>
+        </form>
+    </main>
+
+    <!-- Modal Resumen -->
+    <div id="modalResumen" class="modal">
+        <div class="contenido-modal">
+            <div class="cabecera-modal">
+                <h2>Resumen de Registro</h2>
+                <button class="cerrar-modal">&times;</button>
+            </div>
+            <div id="cuerpoResumen" class="cuerpo-modal">
+                <!-- El contenido del resumen se insertará aquí -->
+            </div>
+            <div class="pie-modal">
+                <button id="btnConfirmar" class="btn-principal">Confirmar y Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Notificación (Sustituye a alert) -->
+    <div id="modalAviso" class="modal">
+        <div class="contenido-modal" style="max-width: 450px;">
+            <div class="cabecera-modal">
+                <h2 id="avisoTitulo">Aviso</h2>
+                <button class="cerrar-modal">&times;</button>
+            </div>
+            <div class="cuerpo-modal" id="avisoMensaje" style="text-align: center; padding: 40px 30px;">
+                <!-- Mensaje dinámico -->
+            </div>
+            <div class="pie-modal" style="text-align: center;">
+                <button id="btnAceptoAviso" class="btn-principal"
+                    style="width: auto; min-width: 120px;">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plantilla para tarjeta de Familiar -->
+    <template id="plantillaFamiliar">
+        <div class="tarjeta-familiar">
+            <div class="titulo-tarjeta">
+                <h3>Familiar <span class="indice-familiar"></span></h3>
+                <button type="button" class="btn-eliminar-familiar">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Eliminar
+                </button>
+            </div>
+            <div class="fila-rejilla">
+                <div class="grupo-formulario">
+                    <label>Nombre *</label>
+                    <input type="text" class="fam-nombre" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label>Apellidos *</label>
+                    <input type="text" class="fam-apellidos" required>
+                </div>
+            </div>
+            <div class="fila-rejilla">
+                <div class="grupo-formulario">
+                    <label>NIF *</label>
+                    <input type="text" class="fam-nif" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label>Profesión</label>
+                    <select class="fam-profesion">
+                        <option value="">Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="fila-rejilla">
+                <div class="grupo-formulario">
+                    <label>Ciudad de nacimiento *</label>
+                    <input type="text" class="fam-ciudad" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label>Lengua materna</label>
+                    <select class="fam-lengua">
+                        <option value="">Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grupo-formulario">
+                <label>Idiomas conocidos</label>
+                <select class="fam-idiomas" multiple class="multi-seleccion">
+                </select>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/models.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

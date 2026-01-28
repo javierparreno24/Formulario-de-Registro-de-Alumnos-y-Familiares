@@ -1,0 +1,52 @@
+{
+  "languages": ["Español", "Catalán", "Gallego", "Euskera", "Inglés", "Francés", "Alemán", "Italiano", "Portugués", "Chino", "Ruso"],
+  "professions": ["Ingeniero", "Profesor", "Médico", "Autónomo", "Empleado de servicios", "Estudiante", "Desempleado", "Otros"],
+  "academicLevels": ["Primaria", "Secundaria (ESO)", "Bachillerato", "Grado Medio", "Grado Superior", "Grado Universitario", "Máster/Doctorado"],
+  "allergies": ["Polen", "Ácaros", "Lactosa", "Gluten", "Frutos secos", "Pescado", "Medicamentos", "Otros"],
+  "locations": [
+    {
+      "country": "España",
+      "cities": [
+        {
+          "name": "Madrid",
+          "populations": ["Madrid Centro", "Alcobendas", "Móstoles", "Leganés"]
+        },
+        {
+          "name": "Barcelona",
+          "populations": ["Barcelona Centro", "Hospitalet", "Badalona", "Sabadell"]
+        },
+        {
+          "name": "Valencia",
+          "populations": ["Valencia Centro", "Torrent", "Paterna", "Gandía"]
+        }
+      ]
+    },
+    {
+      "country": "Portugal",
+      "cities": [
+        {
+          "name": "Lisboa",
+          "populations": ["Lisboa Centro", "Amadora", "Cascais"]
+        },
+        {
+          "name": "Oporto",
+          "populations": ["Porto Centro", "Gaia", "Matosinhos"]
+        }
+      ]
+    },
+    {
+      "country": "Francia",
+      "cities": [
+        {
+          "name": "París",
+          "populations": ["París Centro", "Boulogne-Billancourt", "Saint-Denis"]
+        },
+        {
+          "name": "Lyon",
+          "populations": ["Lyon Centro", "Villeurbanne"]
+        }
+      ]
+    }
+  ],
+  "studyRequested": ["Infantil", "Primaria", "ESO", "Bachillerato", "FP Básica", "Grado Medio", "Grado Superior"]
+}
