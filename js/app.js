@@ -147,25 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Lógica de Validación ---
 
-    function validarNIF(nif) {
-        if (!nif) return false;
-        nif = nif.toUpperCase().trim();
+    function validarDNI(dni) {
+        if (!dni) return false;
+        dni = dni.toUpperCase().trim();
 
-        // Expresión regular para NIF (8 números + letra) y NIE (X, Y o Z + 7 números + letra)
-        const regex = /^([0-9]{8}|[XYZ][0-9]{7})[TRWAGMYFPDXBNJZSQVHLCKE]$/;
-        if (!regex.test(nif)) return false;
-
-        const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        let cadenaNif = nif;
-
-        // Convertir NIE a formato numérico para el cálculo del módulo
-        if (cadenaNif.startsWith('X')) cadenaNif = cadenaNif.replace('X', '0');
-        else if (cadenaNif.startsWith('Y')) cadenaNif = cadenaNif.replace('Y', '1');
-        else if (cadenaNif.startsWith('Z')) cadenaNif = cadenaNif.replace('Z', '2');
-
-        const numero = parseInt(cadenaNif.substring(0, 8), 10);
-        const letra = nif.substring(8);
-        return letras[numero % 23] === letra;
+        // Ahora solo comprobamos el formato: (8 números + letra) o (letra + 7 números + letra)
+        const regex = /^([0-9]{8}|[XYZ][0-9]{7})[A-Z]$/;
+        return regex.test(dni);
     }
 
     function validarCP(cp) {
@@ -188,8 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validaciones personalizadas
             if (campoValido) {
-                if (campo.id === 'alumnoNIF' || campo.classList.contains('fam-nif')) {
-                    if (!validarNIF(campo.value)) campoValido = false;
+                if (campo.id === 'alumnoDNI' || campo.classList.contains('fam-dni')) {
+                    if (!validarDNI(campo.value)) campoValido = false;
                 }
                 if (campo.id === 'direccionCP') {
                     if (!validarCP(campo.value)) campoValido = false;
@@ -225,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         constructorAlumno.establecerDatosPersonales(
             document.getElementById('alumnoNombre').value,
             document.getElementById('alumnoApellidos').value,
-            document.getElementById('alumnoNIF').value,
+            document.getElementById('alumnoDNI').value,
             document.getElementById('alumnoLengua').value,
             idiomasAlumno
         );
@@ -238,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const familiar = constructorFam
                 .establecerNombre(tarjeta.querySelector('.fam-nombre').value)
                 .establecerApellidos(tarjeta.querySelector('.fam-apellidos').value)
-                .establecerNif(tarjeta.querySelector('.fam-nif').value)
+                .establecerDni(tarjeta.querySelector('.fam-dni').value)
                 .establecerProfesion(tarjeta.querySelector('.fam-profesion').value)
                 .establecerCiudadNacimiento(tarjeta.querySelector('.fam-ciudad').value)
                 .establecerLenguaMaterna(tarjeta.querySelector('.fam-lengua').value)
@@ -279,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="grupo-resumen">
                 <h4>Datos del Alumno</h4>
                 <div class="item-resumen"><span class="etiqueta-resumen">Nombre:</span> ${alumno.nombre} ${alumno.apellidos}</div>
-                <div class="item-resumen"><span class="etiqueta-resumen">NIF:</span> ${alumno.nif}</div>
+                <div class="item-resumen"><span class="etiqueta-resumen">DNI:</span> ${alumno.dni}</div>
                 <div class="item-resumen"><span class="etiqueta-resumen">Lengua:</span> ${alumno.lenguaMaterna}</div>
                 <div class="item-resumen"><span class="etiqueta-resumen">Idiomas:</span> ${alumno.idiomasConocidos.join(', ')}</div>
             </div>
@@ -288,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Familiares (${alumno.familiares.length})</h4>
                 ${alumno.familiares.map((f, i) => `
                     <div style="margin-bottom: 10px; padding-left: 10px; border-left: 2px solid #ddd;">
-                        <strong>Familiar ${i + 1}:</strong> ${f.nombre} ${f.apellidos} (${f.nif})<br>
+                        <strong>Familiar ${i + 1}:</strong> ${f.nombre} ${f.apellidos} (${f.dni})<br>
                         <small>Profesión: ${f.profesion || 'No indicada'} | Ciudad Nac.: ${f.ciudadNacimiento}</small>
                     </div>
                 `).join('')}
