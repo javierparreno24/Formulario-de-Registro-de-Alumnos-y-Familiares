@@ -21,7 +21,7 @@ Puesto que el formulario carga datos dinámicamente desde un archivo `data.json`
 
 El formulario está dividido en 5 pasos lógicos para facilitar la introducción de datos:
 
-1.  **Datos del Alumno**: Introduce el nombre, apellidos y DNI. El campo **DNI** acepta cualquier combinación de 8 números y 1 letra (ej: `12345678A`).
+1.  **Datos del Alumno**: Introduce el nombre, apellidos y NIF. El campo **NIF** acepta cualquier combinación de 8 números y 1 letra (ej: `12345678A`).
 2.  **Familiares Asociados**: Es obligatorio añadir al menos un familiar. Puedes añadir varios usando el botón "Añadir Familiar".
 3.  **Dirección**: Completa los datos de ubicación. El Código Postal debe tener exactamente 5 dígitos.
 4.  **Datos Académicos**: Selecciona los niveles de estudio y el colegio de procedencia.
@@ -35,6 +35,6 @@ El formulario está dividido en 5 pasos lógicos para facilitar la introducción
 ---
 
 ## 🛠️ Detalles Técnicos
-*   **Validación de DNI**: Solo comprueba el formato (8 números + 1 letra).
+*   **Validación de NIF**: Solo comprueba el formato (8 números + 1 letra).
 *   **Carga Dinámica**: Las opciones de idiomas, profesiones y niveles se cargan desde `data.json`.
 *   **Arquitectura**: Utiliza el **Patrón Builder** (definido en `js/models.js`) para construir los objetos complejos de Alumno y Familiar de forma limpia.

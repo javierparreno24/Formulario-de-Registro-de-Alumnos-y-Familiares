@@ -147,13 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Lógica de Validación ---
 
-    function validarDNI(dni) {
-        if (!dni) return false;
-        dni = dni.toUpperCase().trim();
+    function validarNIF(nif) {
+        if (!nif) return false;
+        nif = nif.toUpperCase().trim();
 
         // Ahora solo comprobamos el formato: (8 números + letra) o (letra + 7 números + letra)
         const regex = /^([0-9]{8}|[XYZ][0-9]{7})[A-Z]$/;
-        return regex.test(dni);
+        return regex.test(nif);
     }
 
     function validarCP(cp) {
@@ -176,8 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validaciones personalizadas
             if (campoValido) {
-                if (campo.id === 'alumnoDNI' || campo.classList.contains('fam-dni')) {
-                    if (!validarDNI(campo.value)) campoValido = false;
+                if (campo.id === 'alumnoNIF' || campo.classList.contains('fam-nif')) {
+                    if (!validarNIF(campo.value)) campoValido = false;
                 }
                 if (campo.id === 'direccionCP') {
                     if (!validarCP(campo.value)) campoValido = false;
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         constructorAlumno.establecerDatosPersonales(
             document.getElementById('alumnoNombre').value,
             document.getElementById('alumnoApellidos').value,
-            document.getElementById('alumnoDNI').value,
+            document.getElementById('alumnoNIF').value,
             document.getElementById('alumnoLengua').value,
             idiomasAlumno
         );
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const familiar = constructorFam
                 .establecerNombre(tarjeta.querySelector('.fam-nombre').value)
                 .establecerApellidos(tarjeta.querySelector('.fam-apellidos').value)
-                .establecerDni(tarjeta.querySelector('.fam-dni').value)
+                .establecerNif(tarjeta.querySelector('.fam-nif').value)
                 .establecerProfesion(tarjeta.querySelector('.fam-profesion').value)
                 .establecerCiudadNacimiento(tarjeta.querySelector('.fam-ciudad').value)
                 .establecerLenguaMaterna(tarjeta.querySelector('.fam-lengua').value)
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="grupo-resumen">
                 <h4>Datos del Alumno</h4>
                 <div class="item-resumen"><span class="etiqueta-resumen">Nombre:</span> ${alumno.nombre} ${alumno.apellidos}</div>
-                <div class="item-resumen"><span class="etiqueta-resumen">DNI:</span> ${alumno.dni}</div>
+                <div class="item-resumen"><span class="etiqueta-resumen">NIF:</span> ${alumno.nif}</div>
                 <div class="item-resumen"><span class="etiqueta-resumen">Lengua:</span> ${alumno.lenguaMaterna}</div>
                 <div class="item-resumen"><span class="etiqueta-resumen">Idiomas:</span> ${alumno.idiomasConocidos.join(', ')}</div>
             </div>
@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Familiares (${alumno.familiares.length})</h4>
                 ${alumno.familiares.map((f, i) => `
                     <div style="margin-bottom: 10px; padding-left: 10px; border-left: 2px solid #ddd;">
-                        <strong>Familiar ${i + 1}:</strong> ${f.nombre} ${f.apellidos} (${f.dni})<br>
+                        <strong>Familiar ${i + 1}:</strong> ${f.nombre} ${f.apellidos} (${f.nif})<br>
                         <small>Profesión: ${f.profesion || 'No indicada'} | Ciudad Nac.: ${f.ciudadNacimiento}</small>
                     </div>
                 `).join('')}

@@ -4,7 +4,7 @@
 function Familiar() {
     this.nombre = "";
     this.apellidos = "";
-    this.dni = "";
+    this.nif = "";
     this.profesion = "";
     this.ciudadNacimiento = "";
     this.lenguaMaterna = "";
@@ -17,7 +17,7 @@ function Familiar() {
 function Alumno() {
     this.nombre = "";
     this.apellidos = "";
-    this.dni = "";
+    this.nif = "";
     this.lenguaMaterna = "";
     this.idiomasConocidos = [];
     this.familiares = [];
@@ -55,8 +55,8 @@ ConstructorFamiliar.prototype.establecerApellidos = function (apellidos) {
     return this;
 };
 
-ConstructorFamiliar.prototype.establecerDni = function (dni) {
-    this.familiar.dni = dni;
+ConstructorFamiliar.prototype.establecerNif = function (nif) {
+    this.familiar.nif = nif;
     return this;
 };
 
@@ -89,10 +89,10 @@ function ConstructorAlumno() {
     this.alumno = new Alumno();
 }
 
-ConstructorAlumno.prototype.establecerDatosPersonales = function (nombre, apellidos, dni, lenguaMaterna, idiomasConocidos) {
+ConstructorAlumno.prototype.establecerDatosPersonales = function (nombre, apellidos, nif, lenguaMaterna, idiomasConocidos) {
     this.alumno.nombre = nombre;
     this.alumno.apellidos = apellidos;
-    this.alumno.dni = dni;
+    this.alumno.nif = nif;
     this.alumno.lenguaMaterna = lenguaMaterna;
     this.alumno.idiomasConocidos = idiomasConocidos;
     return this;
